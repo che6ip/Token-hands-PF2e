@@ -1,22 +1,41 @@
 {
-  "id": "token-hands",
-  "title": "Руки на токене",
-  "description": "База для отображения того, что токен держит в руках: квадраты с иконками у нижних углов токена, клик по квадрату открывает лист предмета. Сам по себе ничего не ищет — предметные модули (pf2e-token-hands, dnd5e-token-hands) регистрируют здесь провайдеров, которые отвечают на вопрос «что держит этот актёр».",
-  "version": "1.10.1",
+  "id": "deads-man-loot-pf2e",
+  "title": "Dead's Man Loot — Pathfinder 2e",
+  "description": "Адаптер Pathfinder 2e для базового модуля Dead's Man Loot: сообщает базе, какие предметы материальны, сколько их, их редкость и уровень, а также когда существо считается мёртвым.",
+  "version": "1.0.0",
   "authors": [
-    { "name": "Чешир Шредингера" }
+    {
+      "name": "YourName"
+    }
   ],
-  "url": "https://github.com/che6ip/Token-hands",
-  "license": "MIT",
-  "manifest": "https://github.com/che6ip/Token-hands/releases/latest/download/module.json",
-  "download": "https://github.com/che6ip/Token-hands/releases/latest/download/token-hands.zip",
   "compatibility": {
     "minimum": "13",
-    "verified": "14"
+    "verified": "14.369"
   },
-  "esmodules": ["token-hands.mjs"],
-  "languages": [
-    { "lang": "en", "name": "English", "path": "lang/en.json" },
-    { "lang": "ru", "name": "Русский", "path": "lang/ru.json" }
-  ]
+  "relationships": {
+    "requires": [
+      {
+        "id": "deads-man-loot",
+        "type": "module",
+        "active": true,
+        "compatibility": {
+          "minimum": "1.0.0"
+        }
+      }
+    ],
+    "systems": [
+      {
+        "id": "pf2e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "6.0.0"
+        }
+      }
+    ]
+  },
+  "esmodules": [
+    "deads-man-loot-pf2e.mjs"
+  ],
+  "readme": "README.md",
+  "license": "MIT"
 }
