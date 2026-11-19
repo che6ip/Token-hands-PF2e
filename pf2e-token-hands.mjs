@@ -6,7 +6,9 @@
  *         (token-hands). Здесь остался только разбор того, что актёр держит
  *         в руках, и подключение к базе через Hooks.call("tokenHandsRegister").
  *
- * v1.3.1: подпись автора и ссылка на Telegram в настройках модуля.
+ * v1.3.1: подпись автора в настройках модуля.
+ *
+ * v1.3.2: убран внешний контакт.
  *
  * Логика слотов (как рисует их — решает база):
  *  - один одноручный предмет  → правый слот, в левом — безоружная атака;
@@ -19,7 +21,6 @@ const MOD_ID = "pf2e-token-hands";
 const BASE_ID = "token-hands";
 
 const AUTHOR_NAME = "Чешир Шредингера";
-const AUTHOR_TELEGRAM = "https://t.me/+BKPrpQRMP7cxMWFi";
 
 const FALLBACK_UNARMED_ICON = "systems/pf2e/icons/unarmed-attacks/fist.webp";
 
@@ -80,7 +81,7 @@ function registerSettings() {
 /*  Подпись автора в настройках модуля                                        */
 /* -------------------------------------------------------------------------- */
 
-/** Строка «Автор: …» и ссылка на Telegram внизу вкладки модуля в настройках. */
+/** Строка «Автор: …» внизу вкладки модуля в настройках. */
 function injectSettingsCredits(app, element) {
   if (!(element instanceof HTMLElement)) return;
   const section = element.querySelector(`section[data-group="categories"][data-tab="${MOD_ID}"]`);
@@ -102,18 +103,7 @@ function injectSettingsCredits(app, element) {
   const author = document.createElement("div");
   author.textContent = `${game.i18n.localize("PF2E-TOKEN-HANDS.Settings.Credits.Author")}: ${AUTHOR_NAME}`;
 
-  const link = document.createElement("a");
-  link.href = AUTHOR_TELEGRAM;
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
-  link.style.color = "inherit";
-  link.style.textDecoration = "underline";
-  const icon = document.createElement("i");
-  icon.className = "fa-brands fa-telegram";
-  icon.setAttribute("aria-hidden", "true");
-  link.append(icon, document.createTextNode(` ${game.i18n.localize("PF2E-TOKEN-HANDS.Settings.Credits.Telegram")}`));
-
-  box.append(author, link);
+  box.append(author);
   section.append(box);
 }
 
